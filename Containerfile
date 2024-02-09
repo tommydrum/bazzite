@@ -39,6 +39,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/repo/fedora-$
     wget https://copr.fedorainfracloud.org/coprs/hhd-dev/hhd/repo/fedora-$(rpm -E %fedora)/hhd-dev-hhd-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_hhd-dev-hhd.repo && \
     wget https://copr.fedorainfracloud.org/coprs/che/nerd-fonts/repo/fedora-$(rpm -E %fedora)/che-nerd-fonts-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_che-nerd-fonts.repo && \
     wget https://pkgs.tailscale.com/stable/fedora/tailscale.repo -O /etc/yum.repos.d/tailscale.repo && \
+    wget https://download.docker.com/linux/fedora/docker-ce.repo -O /etc/yum.repos.d/docker-ce.repo && \
     sed -i 's@gpgcheck=1@gpgcheck=0@g' /etc/yum.repos.d/tailscale.repo
 
 # Install kernel-fsync
@@ -253,6 +254,16 @@ RUN rpm-ostree install \
         tailscale \
         webapp-manager \
         btop \
+        htop \
+        adb \
+        corectrl \
+        headsetcontrol  \
+        neofetch \
+        docker-ce \
+        docker-ce-cli \
+        docker-buildx-plugin \
+        docker-compose-plugin \
+        zsh \
         fish \
         lshw \
         xdotool \
@@ -382,6 +393,12 @@ RUN if grep -q "kinoite" <<< "${BASE_IMAGE_NAME}"; then \
         plasma-welcome \
         qt5-qdbusviewer && \
     rpm-ostree install \
+        fcitx5-anthy \
+        fcitx5-autostart \
+        latte-dock \
+        materia-kde \
+        materia-kde-sddm \
+        sddm-themes \
         steamdeck-kde-presets-desktop \
         wallpaper-engine-kde-plugin \
         kdeconnectd \
