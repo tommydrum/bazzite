@@ -248,7 +248,6 @@ RUN rpm-ostree install \
         tuned \
         tuned-ppd \
         tuned-utils \
-        tuned-utils-systemtap \
         tuned-gtk \
         tuned-profiles-atomic \
         tuned-profiles-cpu-partitioning \
@@ -491,7 +490,6 @@ RUN if grep -q "kinoite" <<< "${BASE_IMAGE_NAME}"; then \
         gnome-shell-extension-gamerzilla \
         gnome-shell-extension-bazzite-menu \
         gnome-shell-extension-hotedge \
-        gnome-shell-extension-tailscale-gnome-qs \
         rom-properties-gtk3 \
         pixbufloader-vtf \
         openssh-askpass && \
