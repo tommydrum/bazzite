@@ -6,10 +6,11 @@
 
 # [🇺🇸](https://github.com/ublue-os/bazzite/blob/main/README.md) [🇪🇸](https://github.com/ublue-os/bazzite/blob/main/README-SPA.md) [🇮🇩](https://github.com/ublue-os/bazzite/blob/main/README-ID.md)
 
----
+<p align="center">
+  <a href="https://bazzite.gg/#image-picker"><img src="/repo_content/download.png?raw=true" alt="Download Bazzite"/></a>
+</p>
 
-# Image Picker 
-Use our [image picker](https://bazzite.gg/#image-picker) to find the right image for your hardware and preferences.
+---
 
 # Table of Contents
 - [Features for **All** Bazzite Images](#about--features)
@@ -163,30 +164,6 @@ ujust install-legion-go-theme
 
 # Install PS5-to-Xbox glyph theme for hhd & CSS Loader (https://github.com/frazse/PS5-to-Xbox-glyphs)
 ujust install-hhd-xbox-glyph-theme
-```
-
-#### ASUS Ally
-
-Bazzite has separate images specific for the ASUS Ally due to extra driver & software requirements for that hardware. You can pick the Ally images from the installer, or rebase using one of the following:
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-ally:stable
-```
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-ally-gnome:stable
-```
-
-#### Framegame
-
-[Build one of these?](https://www.youtube.com/watch?v=zd6WtTUf-30) Here's an image for you. This is the deck variant of the framework laptop image.
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-framegame:stable
-```
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-framegame-gnome:stable
 ```
 
 ### GNOME
