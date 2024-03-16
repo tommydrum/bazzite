@@ -34,3 +34,9 @@ toggle-updates ACTION="prompt":
     elif [ "${OPTION,,}" == "disable" ]; then
       sudo systemctl disable ublue-update.timer
     fi
+
+alias changelog := changelogs
+
+# Show the changelog
+changelogs:
+    /usr/bin/glow https://raw.githubusercontent.com/ublue-os/bazzite/main/CHANGELOG-SHORT.md --pager

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="/repo_content/Bazzite_Tagline.svg?raw=true" alt="Bazzite"/>
+  <a href="https://bazzite.gg/"><img src="/repo_content/Bazzite_Tagline.svg?raw=true" alt="Bazzite"/></a>
 </p>
 
-![build-bazzite](https://github.com/ublue-os/bazzite/actions/workflows/build.yml/badge.svg)
+[![build-bazzite](https://github.com/ublue-os/bazzite/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bazzite/actions/workflows/build.yml) [![build-bazzite-isos](https://github.com/ublue-os/bazzite/actions/workflows/build_iso.yml/badge.svg)](https://github.com/ublue-os/bazzite/actions/workflows/build_iso.yml)
 
 # [🇺🇸](https://github.com/ublue-os/bazzite/blob/main/README.md) [🇪🇸](https://github.com/ublue-os/bazzite/blob/main/README-SPA.md) [🇮🇩](https://github.com/ublue-os/bazzite/blob/main/README-ID.md)
 
@@ -11,6 +11,8 @@
 </p>
 
 ---
+# Seleccionador de Imágenes
+Usa nuestro [seleccionador de imágenes](https://bazzite.gg/#image-picker) para encontrar la imagen correcta basada en tu hardware y tus preferencias.
 
 # Tabla de Contenidos
 
@@ -35,7 +37,7 @@
 
 ## Acerca de y Características
 
-Bazzite es una imagen OCI que sirve como un sistema operativo alterno para la [Steam Deck](https://www.steamdeck.com/), y como un sistema tipo SteamOS listo para jugar para computadoras de 
+[Bazzite](https://bazzite.gg/) es una imagen OCI que sirve como un sistema operativo alterno para la [Steam Deck](https://www.steamdeck.com/), y como un sistema tipo SteamOS listo para jugar para computadoras de 
 escritorio, computadoras para cine en casa (HTPC), y un sinnúmero de 
 otras computadoras portátiles.
 
@@ -72,7 +74,7 @@ Bazzite es creado con [ublue-os/main](https://github.com/ublue-os/main) y [ublue
 - Driver [GCAdapter_OC](https://github.com/hannesmann/gcadapter-oc-kmod) para aumentar la frecuencia del reloj (overclocking) del adaptador para el mando de videojuegos del Gamecube de Nintendo para obtener una taza de sondeo (polling rate) de 1000hz.
 - Soporte fuera de la caja para los teclados hechos por [Wooting](https://wooting.io/).
 - Soporte incorporado de las GPU de las familias <sub><sup>(HD 7000)</sup></sub> y Sea Islands <sub><sup>(HD 8000)</sup></sub> de AMD bajo el driver `amdgpu`.
-- Un parche esta disponible [para un bug en juegos de 32 bits que usen el motor Source 1](https://github.com/ValveSoftware/Source-1-Games/issues/5043)<sub><sup>[(Por ejemplo: TF2)](https://github.com/ValveSoftware/Source-1-Games/issues/5043)</sup></sub> que provoca que el juego se congele al ser iniciado, para aplicar el parche, ejecuta el siguiente comando en una terminal: `ujust patch-source1-tcmalloc`
+- Un parche esta disponible [para un bug en juegos de 32 bits que usen el motor Source 1](https://github.com/ValveSoftware/Source-1-Games/issues/5043)<sub><sup>[(Por ejemplo: TF2)](https://github.com/ValveSoftware/Source-1-Games/issues/5043)</sup></sub> que provoca que el juego se congele al ser iniciado, para aplicar el parche, ejecuta el siguiente comando en una terminal: `ujust fix-source1-tcmalloc`
 - [XwaylandVideoBridge](https://invent.kde.org/system/xwaylandvideobridge) esta disponible para hacer posible compartir tu pantalla con Discord usando Wayland.
 - [Webapp Manager](https://github.com/linuxmint/webapp-manager) esta disponible para crear aplicaciones de sitios web con una variedad de navegadores web, incluyendo Firefox.
 
@@ -156,10 +158,10 @@ rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-deck:stabl
 
 Si estas usando esta imagen en otras computadoras Handheld que no son la Steam Deck,  puedes controlar el TDP usando el plugin de Decky Loader llamado SimpleDeckyTDP.
 
-- Primero, instala Decky Loader ejecutando el siguiente comando en una terminal: `ujust get-decky`
-- Despues, instala SimpleDeckyTDP ejecutando el siguiente comando en una terminal: `ujust get-simpledeckytdp`
+- Primero, instala Decky Loader ejecutando el siguiente comando en una terminal: `ujust setup-decky`
+- Despues, instala SimpleDeckyTDP ejecutando el siguiente comando en una terminal: `ujust setup-decky simpledeckytdp`
 
-Si estas usando una computadora Handheld que tiene soporte por parte de [hhd](https://github.com/hhd-dev/hhd) <sub><sup>(Como la Lenovo Legion Go o la ASUS ROG Ally)</sup></sub>, tambien puedes obtener un plugin que integra esta funcionalidad en Game Mode, solo ejecuta el siguiente comando en una terminal: `ujust get-hhd-decky`
+Si estas usando una computadora Handheld que tiene soporte por parte de [hhd](https://github.com/hhd-dev/hhd) <sub><sup>(Como la Lenovo Legion Go o la ASUS ROG Ally)</sup></sub>, tambien puedes obtener un plugin que integra esta funcionalidad en Game Mode, solo ejecuta el siguiente comando en una terminal: `ujust setup-decky hhd-decky`
 
 **Igualmente, asegurate de tambien leer la [documentación de HHD (en inglés)](https://github.com/hhd-dev/hhd#after-install), algunas computadoras Handheld requieren ciertos ajustes o tweaks especificos para funcionar correctamente.**
 
@@ -174,38 +176,6 @@ ujust install-legion-go-theme
 
 # Instala el tema para pasar los glifos de Playstation a Xbox (PS5-to-Xbox) para hhd y CSS Loader (https://github.com/frazse/PS5-to-Xbox-glyphs)
 ujust install-hhd-xbox-glyph-theme
-```
-
-#### ASUS Ally
-
-Bazzite tiene imágenes especificas para la ASUS ROG Ally, debido a los requerimientos adicionales en cuanto drivers y software especificos para ese hardware. Puedes escoger las imágenes `-ally` desde el instalador de Bazzite, o puedes cambiar de base (rebase) utilizando cualquiera de los siguientes comandos en una terminal:
-
-Para usar KDE (Entorno default de SteamOS):
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-ally:stable
-```
-
-Para usar GNOME:
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-ally-gnome:stable
-```
-
-#### Framegame
-
-[¿Te armaste una de estas bellezas?](https://www.youtube.com/watch?v=zd6WtTUf-30), tambien tenemos una imagen especifica para ti. Esta es la variante Deck de nuestras imágenes para las laptops de Framework.
-
-Para usar KDE (Entorno default de SteamOS):
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-framegame:stable
-```
-
-Para usar GNOME:
-
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/bazzite-framegame-gnome:stable
 ```
 
 ### GNOME
@@ -294,7 +264,6 @@ Lee nuestras [preguntas frecuentes](https://universal-blue.discourse.group/docs?
 - [Actualizaciones, Reversiones y Cambio de Base (Rebasing)](https://universal-blue.discourse.group/docs?topic=36)
 - [Guía para Jugar en Linux](https://universal-blue.discourse.group/docs?topic=31)
 - [Guía para Configurar el Arranque Dual con Windows (Dual Boot)](https://universal-blue.discourse.group/docs?topic=129)
-- [Documentación Miscelánea](https://universal-blue.discourse.group/docs?topic=287)
 
 Puedes encontrar documentación adicional relacionada al proyecto [aquí](http://docs.bazzite.gg/).
 
@@ -317,6 +286,7 @@ Todos los paquetes que son porteados de SteamOS, ChimeraOS u otros que son utilz
 | gamescope-shaders                                                                                   | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gamescope-shaders/status_image/last_build.png?)                           |
 | galileo-mura                                                                                        | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/galileo-mura/status_image/last_build.png?)                                |
 | [gnome-randr-rust](https://github.com/maxwellainatchi/gnome-randr-rust)                             | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gnome-randr-rust/status_image/last_build.png?)                            |
+| gnome-shell                                                                                         | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gnome-shell/status_image/last_build.png?)                                 |
 | gnome-shell-extension-bazzite-menu                                                                  | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gnome-shell-extension-bazzite-menu/status_image/last_build.png?)          |
 | [gnome-shell-extension-caribou-blocker](https://extensions.gnome.org/extension/1326/block-caribou/) | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gnome-shell-extension-caribou-blocker/status_image/last_build.png?)       |
 | [gnome-shell-extension-hanabi](https://github.com/jeffshee/gnome-ext-hanabi)                        | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/gnome-shell-extension-hanabi/status_image/last_build.png?)                |
@@ -324,6 +294,7 @@ Todos los paquetes que son porteados de SteamOS, ChimeraOS u otros que son utilz
 | [joystickwake](https://github.com/foresto/joystickwake)                                             | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/joystickwake/status_image/last_build.png?)                                |
 | jupiter-fan-control                                                                                 | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/jupiter-fan-control/status_image/last_build.png?)                         |
 | jupiter-hw-support-[btrfs](https://gitlab.com/popsulfr/steamos-btrfs)                               | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/jupiter-hw-support-btrfs/status_image/last_build.png?)                    |
+| kf5-kio                                                                                             | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite/package/kf5-kio/status_image/last_build.png?)                                     |
 | [mangohud](https://github.com/flightlessmango/MangoHud)                                             | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/package/mangohud/status_image/last_build.png?)                           |
 | mesa                                                                                                | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/package/mesa/status_image/last_build.png?)                               |
 | pipewire                                                                                            | ![Build Status](https://copr.fedorainfracloud.org/coprs/kylegospo/bazzite-multilib/package/pipewire/status_image/last_build.png?)                           |
@@ -375,7 +346,8 @@ cosign verify --key cosign.pub ghcr.io/ublue-os/bazzite
 
 ## Arranque Seguro (Secure Boot)
 
-**ADVERTENCIA:** ¡Los usuarios de la Steam Deck **NO** deben activar Secure Boot o registrar nuestras llaves digitales!
+> [!WARNING]  
+> **Usuarios de la Steam Deck: La Steam Deck no viene con Arranque Seguro habilitado y no viene con ninguna llave registrada por defecto. No habilites esto a menos que estes seguro de lo que estes haciendo.**
 
 El Arranque Seguro (Secure Boot) tiene soporte gracias a nuestra llave digital personalizada. La llave pública puede encontrarse en la raíz de [este](https://github.com/ublue-os/bazzite/blob/main/secure_boot.der) repositorio.
 

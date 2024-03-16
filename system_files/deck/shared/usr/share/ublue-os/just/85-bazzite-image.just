@@ -1,39 +1,5 @@
 # vim: set ft=make :
 
-# Install Decky Loader (https://github.com/SteamDeckHomebrew/decky-loader)
-get-decky:
-    #!/usr/bin/bash
-    export HOME=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6)
-    curl -L https://github.com/SteamDeckHomebrew/decky-installer/releases/latest/download/install_release.sh | sh
-    sudo chcon -R -t bin_t $HOME/homebrew/services/PluginLoader
-
-# Install SimpleDeckyTDP, a simple TDP plugin for alternative PC handhelds
-get-simpledeckytdp:
-    #!/usr/bin/bash
-    if [[ -d $HOME/homebrew/plugins ]]; then
-      sudo rm -rf $HOME/homebrew/plugins/SimpleDeckyTDP
-      curl -L $(curl -s https://api.github.com/repos/aarron-lee/SimpleDeckyTDP/releases/latest | grep "browser_download_url" | cut -d '"' -f 4) -o /tmp/SimpleDeckyTDP.tar.gz
-      sudo tar -xzf /tmp/SimpleDeckyTDP.tar.gz -C $HOME/homebrew/plugins
-      rm /tmp/SimpleDeckyTDP.tar.gz
-      sudo sed -i 's/ENABLE_HARDWARE_CONTROL_ON_NON_DECK_HARDWARE=0/ENABLE_HARDWARE_CONTROL_ON_NON_DECK_HARDWARE=1/g' /etc/default/steam-hardware-control
-      echo 'Installed. Please reboot to apply needed changes.'
-    else
-      echo 'Please install Decky Loader by running ujust get-decky first.'
-    fi
-
-# Install HHD Decky Plugin for controlling input on the Lenovo Legion Go and ASUS Ally
-get-hhd-decky:
-    #!/usr/bin/bash
-    if [[ -d $HOME/homebrew/plugins ]]; then
-      sudo rm -rf $HOME/homebrew/plugins/hhd-decky
-      curl -L $(curl -s https://api.github.com/repos/hhd-dev/hhd-decky/releases/latest | grep "browser_download_url" | cut -d '"' -f 4) -o /tmp/hhd-decky.tar.gz
-      sudo tar -xzf /tmp/hhd-decky.tar.gz -C $HOME/homebrew/plugins
-      rm /tmp/hhd-decky.tar.gz
-      echo 'Installed.'
-    else
-      echo 'Please install Decky Loader by running ujust get-decky first.'
-    fi
-
 # Install ROG Ally Theme for CSS Loader (https://github.com/semakusut/SBP-ROG-Ally)
 install-rog-ally-theme:
     #!/usr/bin/bash
@@ -138,6 +104,8 @@ restore-input-remapper:
     systemctl enable --now input-remapper.service && \
     cp /usr/share/applications/input-remapper-gtk.desktop ~/.local/share/applications/input-remapper-gtk.desktop && \
     sed -i '/NoDisplay=true/d' ~/.local/share/applications/input-remapper-gtk.desktop
+
+alias _toggle-wayland := _toggle_wayland
 
 _toggle_wayland:
     #!/usr/bin/bash
